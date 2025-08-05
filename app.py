@@ -42,7 +42,10 @@ def chat():
         raw_response = response.json()['choices'][0]['message']['content']
         assistant_response = markdown.markdown(raw_response, extensions=['fenced_code', 'tables'])
     else:
-        assistant_response = "Sorry, I couldn't process your request at this time."
+        # Log the error details
+        print(f"Error: Status Code {response.status_code}")
+        print(f"Response: {response.text}")
+        assistant_response = f"Error: Status Code {response.status_code}. Please check your API key and try again."
 
     return render_template('response.html', response=assistant_response)
 
