@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import requests
 import json
 import os
+import markdown
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -38,7 +39,8 @@ def chat():
     )
     
     if response.status_code == 200:
-        assistant_response = response.json()['choices'][0]['message']['content']
+        raw_response = response.json()['choices'][0]['message']['content']
+        assistant_response = markdown.markdown(raw_response, extensions=['fenced_code', 'tables'])
     else:
         assistant_response = "Sorry, I couldn't process your request at this time."
 

@@ -6,6 +6,7 @@ A Flask-based chatbot application using the OpenRouter API with Moonshot AI's Ki
 
 - Clean and simple web interface
 - Powered by Moonshot AI's Kimi model through OpenRouter API
+- Markdown support for AI responses (including code blocks, tables, and more)
 - Environment-based configuration
 - Production-ready setup for Render deployment
 
