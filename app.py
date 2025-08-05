@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request
 import requests
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 
 @app.route('/')
 def index():
@@ -41,4 +45,5 @@ def chat():
     return render_template('response.html', response=assistant_response)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
